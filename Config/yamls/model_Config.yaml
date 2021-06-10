@@ -1,0 +1,12 @@
+jieba:
+  bigdict: C:\Users\marcus\PycharmProjects\nlp_backend\models\seg\userdict.txt
+  backup_folder: C:\Users\marcus\PycharmProjects\nlp_backend\models\seg\backup
+  update_folder: C:\Users\marcus\PycharmProjects\nlp_backend\models\seg\update
+transformers:
+  bert_model: C:\Users\marcus\PycharmProjects\nlp_backend\models\ner
+wordvec:
+  gensim: C:\Users\marcus\PycharmProjects\nlp_engine\pretrained_models\word2vec\gensim_models\boc_app.bin
+  maganitute:
+    heavy: C:\Users\marcus\PycharmProjects\nlp_backend\models\w2v\boc_app_heavy.magnitude
+    light: C:\Users\marcus\PycharmProjects\nlp_backend\models\w2v\boc_app_light.magnitude
+

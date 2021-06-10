@@ -1,0 +1,10 @@
+stocknames:
+  HK:
+    Chi: http://10.1.8.158/StreamServer/SortSearchServlet?reqID=6&category=1&sortFieldID=1&sort=A&from=0&size=5000&customFields=1,2
+    Eng: http://10.1.8.158/StreamServer/SortSearchServlet?reqID=6&category=1&sortFieldID=1&sort=A&from=0&size=5000&customFields=1,4
+  Shanghai:
+    Chi: http://10.1.8.158/StreamServer/SortSearchServlet?reqID=6&category=9&sortFieldID=1&sort=A&from=0&size=5000&customFields=1,2
+    Eng: http://10.1.8.158/StreamServer/SortSearchServlet?reqID=6&category=9&sortFieldID=1&sort=A&from=0&size=5000&customFields=1,4
+  Shenzhen:
+    Chi: http://10.1.8.158/StreamServer/SortSearchServlet?reqID=6&category=11&sortFieldID=1&sort=A&from=0&size=5000&customFields=1,2
+    Eng: http://10.1.8.158/StreamServer/SortSearchServlet?reqID=6&category=11&sortFieldID=1&sort=A&from=0&size=5000&customFields=1,4
