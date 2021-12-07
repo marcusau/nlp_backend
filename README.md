@@ -9,7 +9,7 @@ The module is mainly built by python3.7, and one server script of Natural Langua
 
 # **Structure of app2app module**
 
-![](/demo_configs/project_structure_nohlighlight.PNG)
+![](/pic/project_structure_nohlighlight.PNG)
 
 
 ## Four main Components
@@ -23,7 +23,7 @@ The whole module pipeline is built at sequential order. To build the module in s
  
 App2app Overall Module flow-chart (app2app_nlp + app2app_web ) 
 
-![](/demo_configs/flow.jpg)
+![](/pic/flow.jpg)
 
 
  
@@ -62,7 +62,7 @@ App2app Overall Module flow-chart (app2app_nlp + app2app_web )
 
 ## **Workflow of data retrieval of news, lifestyle columnist**
 
-![](/demo_configs/NLPServerInput.png)
+![](/pic/NLPServerInput.png)
  
 
 
@@ -71,11 +71,11 @@ App2app Overall Module flow-chart (app2app_nlp + app2app_web )
 
 **Flow-chart of NLP application/server**
 
-![](/demo_configs/NLPserver.png)
+![](/pic/NLPserver.png)
 
 # 2. NLP Backend-engine 
 ### The background service is run on background in server, called function by API url shown below. The [NLP backend engine](https://github.com/etnetapp-dev/app2app_nlp/blob/master/backend/engine.py) mainly performs four NLP functions:
-![](/demo_configs/NLP_backend.PNG)
+![](/pic/NLP_backend.PNG)
 - jieba word segmentation
 > - Pre-requisite files: [userdict.txt](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/userdict.txt) , [userdict_ner.txt](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/userdict_ner.txt), [stopwords.txt](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/stopwords.txt) -- config paths are stored in [data_files.yaml](https://github.com/etnetapp-dev/app2app_nlp/blob/master/config/data_files.yaml))
 > - Requests method: post
@@ -116,7 +116,7 @@ Pre-requisite files: boc_app.bin (size ~170M too large to upload to github) , [n
 
 # 3. Text Processing - [keywords+ vectorize](https://github.com/etnetapp-dev/app2app_nlp/tree/master/text_processing/keywords_vectorizer):
 
-![](/demo_configs/NLP_textprocessing.PNG)
+![](/pic/NLP_textprocessing.PNG)
 
 ### **Pre-requisite dependence:** all Backend-functional-Utilities are in running on background
 ### [backend_usage.py](https://github.com/etnetapp-dev/app2app_nlp/blob/master/text_processing/backend_usage.py)
@@ -151,7 +151,7 @@ Pre-requisite files: boc_app.bin (size ~170M too large to upload to github) , [n
 #### - **start-point :** sql database
 #### - **end-point :**  http://<host>:<theme mapping port>/app2app/theme_mapping
 # example of output of theme-articles-mapping
-![](demo_configs/output1.png)
+![](pic/output1.png)
 
 
 **Supplementary data**
@@ -193,13 +193,13 @@ End-point        : SQL Database :app2app
 ### 1.3.Service run command
 #### 1.3.1   create and edit “app2app-data-source” script
      vim /opt/etnet/scripts/app2app-data-source 
-![](demo_configs/app2app_datasource.png)   
+![](pic/app2app_datasource.png)   
 Note: mainly input “direct run command” in between start) and exit $?
 
 
 #### 1.3.2. create and edit app2app-data-source.service in “/usr/lib/systemd/system/” folder
      vim /usr/lib/systemd/system/ app2app-data-source.service
-![](demo_configs/app2app_datasource_service.png)   
+![](pic/app2app_datasource_service.png)   
 Note: mainly paste the directory of “app2app-data-source” of step2.1 into the .service file
 
 #### 1.3.3  run the .service in the background with “systemctl start” command
@@ -223,12 +223,12 @@ Script directory in development server: /opt/etnet/app2app/backend
 ### 2.3.Service run command
 #### 2.3.1 create and edit “app2app-backend-engine” script
      vim /opt/etnet/scripts/app2app-backend-engine
-![](demo_configs/app2app_backend_engine.png)   
+![](pic/app2app_backend_engine.png)   
 Note: mainly input “direct run command” in between start) and exit $?
 
 #### 2.3.2. create and edit “app2app-backend-engine.service” in “/usr/lib/systemd/system/” folder
      vim /usr/lib/systemd/system/app2app-backend-engine.service
-![](demo_configs/app2app_backend_engine_service.png)   
+![](pic/app2app_backend_engine_service.png)   
 Note: mainly paste the directory of “app2app-backend-engine” of step2.1 into the .service file
 
 #### 2.3.3  run the .service in the background with “systemctl start” command
@@ -251,12 +251,12 @@ Script directory in development server:  /opt/etnet/app2app/text_processing/keyw
 ### 3.3.Service run command
 #### 3.3.1   create and edit “app2app-keywords-vectorize” script
      vim /opt/etnet/scripts/ app2app-keywords-vectorize 
-![](demo_configs/app2app_keywords_vectorize.png)   
+![](pic/app2app_keywords_vectorize.png)   
 Note: mainly input “direct run command” in between start) and exit $?
 
 #### 3.3.2. create and edit app2app-keyword-vectorize.service in “/usr/lib/systemd/system/” folder
      vim /usr/lib/systemd/system/ app2app-keyword-vectorize.service
-![](demo_configs/app2app_keywords_vectorize_service.png)   
+![](pic/app2app_keywords_vectorize_service.png)   
 Note: mainly paste the directory of “app2app-keyword-vectorize.service” of step2.1 into the .service file
 
 #### 3.3.3  run the .service in the background with “systemctl start” command
@@ -280,12 +280,12 @@ Script directory in development server:  /opt/etnet/app2app/text_processing/them
 ### 4.3.Service run command
 #### 4.3.1   create and edit “app2app-theme-mapping.service” script
      vim /opt/etnet/scripts/ app2app-theme-mapping.service
-![](demo_configs/app2app_theme_mapping.png)     
+![](pic/app2app_theme_mapping.png)     
 Note: mainly input “direct run command” in between start) and exit $?
 
 #### 4.3.2. create and edit “app2app-theme-mapping.service” in “/usr/lib/systemd/system/” folder
      vim /usr/lib/systemd/system/ app2app-theme-mapping.service 
-![](demo_configs/app2app_theme_mapping_service.png)   
+![](pic/app2app_theme_mapping_service.png)   
 Note: mainly paste the directory of “app2app-theme-mapping.service” of step2.1 into the .service file
 
 
@@ -335,12 +335,12 @@ Tables in app2app schema can be divided into four main groups based on their fun
 
 
 ## Tables structures of  app2app Schema :
- ![](demo_configs/sqldb_design.PNG)
+ ![](pic/sqldb_design.PNG)
  
 #### 
 
 ## ER Diagram of tables serving **news articles**
- ![](demo_configs/ERDiagrame_db_news.png)
+ ![](pic/ERDiagrame_db_news.png)
 #### 
  | tablename | purpose |
 | :---: | :---: | 
@@ -352,7 +352,7 @@ Tables in app2app schema can be divided into four main groups based on their fun
 #### 
 
  ## ER Diagram of tables serving  **lifestyle articles**  
- ![](demo_configs/ERDiagram_db_lifestyle.png)
+ ![](pic/ERDiagram_db_lifestyle.png)
  #### 
 
   
@@ -367,7 +367,7 @@ Tables in app2app schema can be divided into four main groups based on their fun
 | lifestyle_tortags_tags | store information of tags ,including tag titles ,tagid, description and categorial information|   
 #### 
 ## ER Diagram of tables serving  **theme and stocknames**   
- ![](demo_configs/ERDiagram_db_others.png)
+ ![](pic/ERDiagram_db_others.png)
 #### 
     
  | tablename | purpose |
