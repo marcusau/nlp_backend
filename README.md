@@ -1,15 +1,12 @@
 # Introduction
 #### This project aims to  high level design of BOCHK OAPI Application, which is served as enhancement of stock searching in etnet Mobile Application. 
 
-**App2app module**
-
-App2app module, is a python-based module, aimed to serve as enhancement of stock searching and article-recommendation in etnet Mobile Application for the high level design of BOCHK OAPI project.
 
 The module is mainly built by python3.7, and one server script of Natural Language Processing (NLP) application.
 
 # **Structure of app2app module**
+![](/pic/flow.jpg)
 
-![](/pic/project_structure_nohlighlight.PNG)
 
 
 ## Four main Components
@@ -17,13 +14,7 @@ The module is mainly built by python3.7, and one server script of Natural Langua
 The whole module pipeline is built at sequential order. To build the module in server, you have to run the scripts at pre-defined sequences.
 1. [Data Retrieval](https://github.com/etnetapp-dev/app2app_nlp/tree/master/data_source)  - extract data from external APIs (data incl., news, lifestyle, theme and stocknames)
 2. [NLP application (backend)](https://github.com/etnetapp-dev/app2app_nlp/tree/master/backend)  - Background NLP functions pending for called by other applications with internal APIs (key NLP backend functions: jieba word segmentation (jieba), Name entity recognition (NER), keyword extraction (combining the features of jieba + NER) and word2vec )
-3. [NLP application (keyword+vector)](https://github.com/etnetapp-dev/app2app_nlp/tree/master/text_processing/keywords_vectorizer)  - extract articles from SQL DB and calculate NLP results by the internal APIs of backend engine 
-3. [NLP application (theme-articles-mapping)](https://github.com/etnetapp-dev/app2app_nlp/tree/master/text_processing/theme_articles_mappingg)  - extract articles from SQL DB and calculate the most relevant articles of all themes. (notes: Main endpoint of app2app_nlp module and input of [app2app_web module](https://github.com/etnetapp-dev/app2app_web))
-
- 
-App2app Overall Module flow-chart (app2app_nlp + app2app_web ) 
-
-![](/pic/flow.jpg)
+3. [NLP application ](https://github.com/etnetapp-dev/app2app_nlp/tree/master/text_processing/keywords_vectorizer)  - extract articles from SQL DB and calculate NLP results by the internal APIs of backend engine 
 
 
  
