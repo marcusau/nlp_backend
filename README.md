@@ -1,19 +1,21 @@
 # Introduction
-#### This project aims to  high level design of BOCHK OAPI Application, which is served as enhancement of stock searching in etnet Mobile Application. 
 
+This project is part of the NLP application project to perform keyword extraction adn relevant articles recommendation for both ETNet financial news and CMS articles.
+
+The backend facilties of NLP application is divided into three key components: data retrival, nlp backend engine and nlp middle-tier application.
+
+The scripts of  data retrival and NLP middle-tier application are stored in https://github.com/etnetapp-dev/nlp_middle_tier and this repository is focused on NLP backend engine with multiple NLP function, e.g., name entity recognition (NER), word segmentation (tokenization), word2vector functions, and fuzz logic, etc.
 
 The module is mainly built by python3.7, and one server script of Natural Language Processing (NLP) application.
 
-# **Structure of app2app module**
+# **Structure of NLP application project**
 ![](/pic/NLPServerInput.png)
-
-
 
 ## Three main Components
 
 The whole module pipeline is built at sequential order. To build the module in server, you have to run the scripts at pre-defined sequences.
 1. [Data Retrieval](https://github.com/etnetapp-dev/app2app_nlp/tree/master/data_source)  - extract data from external APIs (data incl., news, lifestyle, theme and stocknames)
-2. [NLP application (backend)](https://github.com/etnetapp-dev/app2app_nlp/tree/master/backend)  - Background NLP functions pending for called by other applications with internal APIs (key NLP backend functions: jieba word segmentation (jieba), Name entity recognition (NER), keyword extraction (combining the features of jieba + NER) and word2vec )
+2. [NLP backend  enging](https://github.com/etnetapp-dev/app2app_nlp/tree/master/backend)  - Background NLP functions pending for called by other applications with internal APIs (key NLP backend functions: jieba word segmentation (jieba), Name entity recognition (NER), keyword extraction (combining the features of jieba + NER) and word2vec )
 3. [NLP application ](https://github.com/etnetapp-dev/app2app_nlp/tree/master/text_processing/keywords_vectorizer)  - extract articles from SQL DB and calculate NLP results by the internal APIs of backend engine 
 
 
@@ -22,7 +24,7 @@ The whole module pipeline is built at sequential order. To build the module in s
 # Data Retrieval 
 
 **Pre-requisite procedures**: connection and configuration of SQLDB
-> please refer to the documentation in https://github.com/etnetapp-dev/nlp_middle_tier
+> please refer to the documentation in 
 
 
 # **Natural Language Processing (NLP) application **
