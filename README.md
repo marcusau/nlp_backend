@@ -49,36 +49,32 @@ The hug_server.py is the key API interface scripts to concentrate all NLP applic
 - Port:  {please refer to API_config.yaml in Config folder}
 - folder path: /opt/etnet/nlp_backend
 
-##### Command lines of starting server
-- manual start: python3 /opt/etnet/nlp_backend/hug_server.py
-# ** Procedures of background service of app2app python modules in linux server **
 
-### 2.1. basic information
-Python script: engine.py
-Config file: /config/NLP_app.yaml (the backend section) and /config/data_files.yaml 
-Function: background utility APIs for all NLP operations
-Script nature: APIs
-Startpoint: all models and text files stored in config/data_files.yaml
-End-point: API routes specified in /config/NLP_app.yaml (the backend section)
-Script directory in development server: /opt/etnet/app2app/backend
 
-### 2.2.Direct run command : 
-     python3.7  /opt/etnet/app2app/backend/engine.py
-     python3.7  <folder path> /backend/engine.py
+# **Procedures of background service of app2app python modules in linux server**
 
-### 2.3.Service run command
-#### 2.3.1 create and edit “app2app-backend-engine” script
-     vim /opt/etnet/scripts/app2app-backend-engine
-![](pic/app2app_backend_engine.png)   
+### basic information
+Python script: hug_server.py
+Config file: yaml files in /Config/yamls
+End-point: API routes specified in /Config/yaml/API_Config.yaml 
+
+
+### Direct run command : 
+     python3.7  /opt/etnet/nlp_backend/hug_server.py
+     python3.7  <folder path>/hug_server.py
+
+### Service run command
+#### create and edit “lp_backend” script
+     vim /opt/etnet/scripts/nlp_backend
+![](pic/nlp_backend_script.JPG)   
 Note: mainly input “direct run command” in between start) and exit $?
 
-#### 2.3.2. create and edit “app2app-backend-engine.service” in “/usr/lib/systemd/system/” folder
-     vim /usr/lib/systemd/system/app2app-backend-engine.service
-![](pic/app2app_backend_engine_service.png)   
-Note: mainly paste the directory of “app2app-backend-engine” of step2.1 into the .service file
+#### create and edit “app2app-backend-engine.service” in “/usr/lib/systemd/system/” folder
+     vim /usr/lib/systemd/system/nlp_backend.service
+![](pic/nlp_backend_service.JPG)   
 
-#### 2.3.3  run the .service in the background with “systemctl start” command
-     systemctl start app2app-backend-engine.service
+#### run the .service in the background with “systemctl start” command
+     systemctl start nlp_backend.service
 
 
 ### The background service is run on background in server, called function by API url shown below.
