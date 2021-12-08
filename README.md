@@ -1,19 +1,21 @@
 # Introduction
-#### This project aims to  high level design of BOCHK OAPI Application, which is served as enhancement of stock searching in etnet Mobile Application. 
 
+This project is part of the NLP application project to perform keyword extraction adn relevant articles recommendation for both ETNet financial news and CMS articles.
+
+The backend facilties of NLP application is divided into three key components: data retrival, nlp backend engine and nlp middle-tier application.
+
+The scripts of  data retrival and NLP middle-tier application are stored in https://github.com/etnetapp-dev/nlp_middle_tier and this repository is focused on NLP backend engine with multiple NLP function, e.g., name entity recognition (NER), word segmentation (tokenization), word2vector functions, and fuzz logic, etc.
 
 The module is mainly built by python3.7, and one server script of Natural Language Processing (NLP) application.
 
-# **Structure of app2app module**
+# **Structure of NLP application project**
 ![](/pic/NLPServerInput.png)
-
-
 
 ## Three main Components
 
 The whole module pipeline is built at sequential order. To build the module in server, you have to run the scripts at pre-defined sequences.
 1. [Data Retrieval](https://github.com/etnetapp-dev/app2app_nlp/tree/master/data_source)  - extract data from external APIs (data incl., news, lifestyle, theme and stocknames)
-2. [NLP application (backend)](https://github.com/etnetapp-dev/app2app_nlp/tree/master/backend)  - Background NLP functions pending for called by other applications with internal APIs (key NLP backend functions: jieba word segmentation (jieba), Name entity recognition (NER), keyword extraction (combining the features of jieba + NER) and word2vec )
+2. [NLP backend  enging](https://github.com/etnetapp-dev/app2app_nlp/tree/master/backend)  - Background NLP functions pending for called by other applications with internal APIs (key NLP backend functions: jieba word segmentation (jieba), Name entity recognition (NER), keyword extraction (combining the features of jieba + NER) and word2vec )
 3. [NLP application ](https://github.com/etnetapp-dev/app2app_nlp/tree/master/text_processing/keywords_vectorizer)  - extract articles from SQL DB and calculate NLP results by the internal APIs of backend engine 
 
 
@@ -22,7 +24,7 @@ The whole module pipeline is built at sequential order. To build the module in s
 # Data Retrieval 
 
 **Pre-requisite procedures**: connection and configuration of SQLDB
-> please refer to the documentation in https://github.com/etnetapp-dev/nlp_middle_tier
+> please refer to the documentation in 
 
 
 # **Natural Language Processing (NLP) application **
@@ -31,9 +33,59 @@ The whole module pipeline is built at sequential order. To build the module in s
 
 ![](/pic/NLPserver.png)
 
-# 2. NLP Backend-engine 
-### The background service is run on background in server, called function by API url shown below. The [NLP backend engine](https://github.com/etnetapp-dev/app2app_nlp/blob/master/backend/engine.py) mainly performs four NLP functions:
-![](/pic/NLP_backend.PNG)
+# NLP Backend-engine 
+
+The overall backend engine formed by four components:
+- Config folder : to store the all config in the yaml folders and script to convert data from yaml into python OOP objects
+- database folder:  to connect python script to SQL database and store CRUD script of python-sql 
+- models folder: to store the models and model related data e,g. vocab, jieba dictionary and word2vec models
+- functions folder:  to load all nlp models to memory and apply functions for NLP applications.
+
+All NLP functions are called by API router pecified in hug_server.py.
+
+The hug_server.py is the key API interface scripts to concentrate all NLP application and map the function to corresponding API routes based on the API route config stored in yaml folders of Config folder.
+
+- Server IP: 10.200.23.42
+- Port:  {please refer to API_config.yaml in Config folder}
+- folder path: /opt/etnet/nlp_backend
+
+##### Command lines of starting server
+- manual start: python3 /opt/etnet/nlp_backend/hug_server.py
+# ** Procedures of background service of app2app python modules in linux server **
+
+### 2.1. basic information
+Python script: engine.py
+Config file: /config/NLP_app.yaml (the backend section) and /config/data_files.yaml 
+Function: background utility APIs for all NLP operations
+Script nature: APIs
+Startpoint: all models and text files stored in config/data_files.yaml
+End-point: API routes specified in /config/NLP_app.yaml (the backend section)
+Script directory in development server: /opt/etnet/app2app/backend
+
+### 2.2.Direct run command : 
+     python3.7  /opt/etnet/app2app/backend/engine.py
+     python3.7  <folder path> /backend/engine.py
+
+### 2.3.Service run command
+#### 2.3.1 create and edit “app2app-backend-engine” script
+     vim /opt/etnet/scripts/app2app-backend-engine
+![](pic/app2app_backend_engine.png)   
+Note: mainly input “direct run command” in between start) and exit $?
+
+#### 2.3.2. create and edit “app2app-backend-engine.service” in “/usr/lib/systemd/system/” folder
+     vim /usr/lib/systemd/system/app2app-backend-engine.service
+![](pic/app2app_backend_engine_service.png)   
+Note: mainly paste the directory of “app2app-backend-engine” of step2.1 into the .service file
+
+#### 2.3.3  run the .service in the background with “systemctl start” command
+     systemctl start app2app-backend-engine.service
+
+
+### The background service is run on background in server, called function by API url shown below.
+
+
+
+
 - jieba word segmentation
 > - Pre-requisite files: [userdict.txt](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/userdict.txt) , [userdict_ner.txt](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/userdict_ner.txt), [stopwords.txt](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/stopwords.txt) -- config paths are stored in [data_files.yaml](https://github.com/etnetapp-dev/app2app_nlp/blob/master/config/data_files.yaml))
 > - Requests method: post
@@ -72,64 +124,8 @@ Pre-requisite files: boc_app.bin (size ~170M too large to upload to github) , [n
     
     
 
-##
-##
-# ** Procedures of background service of app2app python modules in linux server **
+ 
 
-### 2.1. basic information
-Python script: engine.py
-Config file: /config/NLP_app.yaml (the backend section) and /config/data_files.yaml 
-Function: background utility APIs for all NLP operations
-Script nature: APIs
-Startpoint: all models and text files stored in config/data_files.yaml
-End-point: API routes specified in /config/NLP_app.yaml (the backend section)
-Script directory in development server: /opt/etnet/app2app/backend
-
-### 2.2.Direct run command : 
-     python3.7  /opt/etnet/app2app/backend/engine.py
-     python3.7  <folder path> /backend/engine.py
-
-### 2.3.Service run command
-#### 2.3.1 create and edit “app2app-backend-engine” script
-     vim /opt/etnet/scripts/app2app-backend-engine
-![](pic/app2app_backend_engine.png)   
-Note: mainly input “direct run command” in between start) and exit $?
-
-#### 2.3.2. create and edit “app2app-backend-engine.service” in “/usr/lib/systemd/system/” folder
-     vim /usr/lib/systemd/system/app2app-backend-engine.service
-![](pic/app2app_backend_engine_service.png)   
-Note: mainly paste the directory of “app2app-backend-engine” of step2.1 into the .service file
-
-#### 2.3.3  run the .service in the background with “systemctl start” command
-     systemctl start app2app-backend-engine.service
-#####  
-##  3. keywords_vectorizer
-### 3.1 Basic information
-Python script: scheduler.py 
-Config file: /config/NLP_app.yaml  ( in text_process section)
-Function: schedule job to articles from SQL DB (app2app schema) and calculate NLP results by the APIs functions of app2app-backend-engine.service
-Script nature: scheduler 
-Startpoint: SQL Database :app2app
-End-point: SQL Database :app2app
-Script directory in development server:  /opt/etnet/app2app/text_processing/keywords_vectorizer/
-
-### 3.2.Direct run command : 
-     python3.7  /opt/etnet/app2app/text_processing/keywords_vectorizer/scheduler.py
-     python3.7  <folder path>/text_processing/keywords_vectorizer/scheduler.py
-
-### 3.3.Service run command
-#### 3.3.1   create and edit “app2app-keywords-vectorize” script
-     vim /opt/etnet/scripts/ app2app-keywords-vectorize 
-![](pic/app2app_keywords_vectorize.png)   
-Note: mainly input “direct run command” in between start) and exit $?
-
-#### 3.3.2. create and edit app2app-keyword-vectorize.service in “/usr/lib/systemd/system/” folder
-     vim /usr/lib/systemd/system/ app2app-keyword-vectorize.service
-![](pic/app2app_keywords_vectorize_service.png)   
-Note: mainly paste the directory of “app2app-keyword-vectorize.service” of step2.1 into the .service file
-
-#### 3.3.3  run the .service in the background with “systemctl start” command
-     systemctl start app2app-keyword-vectorize.service
    
 
 ##
