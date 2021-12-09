@@ -87,6 +87,12 @@ Note: mainly input “direct run command” in between start) and exit $?
 > - Requests method: post
 > - Data sent: text sentence (datatype: string)
 > - Response: word segments (datatype: list)
+### work segmentation example 1(jieba.cut)
+![](pic/jieba_cut_example.JPG)   
+
+### work segmentation example 2 (jieba.cut_for_search)
+![](pic/cut_for_search_example.JPG)   
+
 
 
 - Name Entity Recognition (NER) 
