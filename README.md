@@ -90,7 +90,7 @@ Note: mainly input “direct run command” in between start) and exit $?
 > 
 ### work segmentation example (jieba.cut)
 
-- API: http://<host>:<post>/nlp_backend/seg/cut
+- API: http://{host}:{post}/nlp_backend/seg/cut
  
 ![](pic/jieba_cut_example.JPG)   
 
