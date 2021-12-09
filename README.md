@@ -83,7 +83,7 @@ Note: mainly input “direct run command” in between start) and exit $?
 
 
 - jieba word segmentation
-> - Pre-requisite files: [userdict.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/userdict.txt) , [stopwords.txt](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/stopwords.txt) -- config paths are stored in [data_files.yaml](https://github.com/etnetapp-dev/app2app_nlp/blob/master/config/data_files.yaml))
+> - Pre-requisite files: [userdict.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/userdict.txt) , [stopwords.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/stopwords.txt) -- config paths are stored in [model_Config.yaml](https://github.com/etnetapp-dev/nlp_backend/tree/master/Config/yamls/model_Config.yaml))
 > - Requests method: post
 > - Data sent: text sentence (datatype: string)
 > - Response: word segments (datatype: list)
