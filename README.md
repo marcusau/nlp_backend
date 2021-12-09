@@ -96,7 +96,7 @@ Note: mainly input “direct run command” in between start) and exit $?
 
 
 - Name Entity Recognition (NER) 
-> - Pre-requisite dependencies:  ([model](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/ner/) and [model handler script](https://github.com/etnetapp-dev/nlp_backend/tree/master/functions/ner.py))
+> - Pre-requisite dependencies:  ([model](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/ner/) and [model handler script](https://github.com/etnetapp-dev/nlp_backend/tree/master/functions/ner.py)), installation of open library: [huggingface Transformer](https://huggingface.co/docs/transformers/index)
 > - Request method: post
 > - Data in request: str
 > - response: json
@@ -113,9 +113,6 @@ installation of open-library : [magnitude-light](https://github.com/davebulaval/
  
  ### word vs words similarity analysis example 
 ![](pic/word2words_sim_example.JPG)  
- 
- ### Name Entity Recognition example 
-![](pic/NER_example.JPG)  
  
  ### use word2vec model to find out top N words with semantic similarity meaning example 
 ![](pic/topn_example.JPG)  
