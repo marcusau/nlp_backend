@@ -94,6 +94,7 @@ Note: mainly input “direct run command” in between start) and exit $?
  
 ![](pic/jieba_cut_example.JPG)   
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Name Entity Recognition (NER) 
 
@@ -105,6 +106,11 @@ Note: mainly input “direct run command” in between start) and exit $?
 > - response: json
 ### Name Entity Recognition example 
 ![](pic/NER_example.JPG)   
+
+### Type of Name Entity example 
+![](pic/ner_desc.JPG)   
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 ## word2vec 
@@ -135,6 +141,7 @@ installation of open-library : [magnitude-light](https://github.com/davebulaval/
  
 ![](pic/check_dupe_example.JPG)  
     
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## fuzz logic of words
 Pre-requisite files: installation of open library: [rupidfuzz](https://github.com/maxbachmann/RapidFuzz) ,
@@ -159,7 +166,7 @@ Pre-requisite files: installation of open library: [rupidfuzz](https://github.co
 
  
 
-   
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
 
 ##
 # ** Design and structure of SQL Database **
