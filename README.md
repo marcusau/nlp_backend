@@ -80,9 +80,9 @@ Note: mainly input “direct run command” in between start) and exit $?
 ### The background service is run on background in server, called function by API url shown below.
 
 
+# Four key functions of nlp_backend
 
-
-- jieba word segmentation
+##  jieba word segmentation
 > - Pre-requisite files: [userdict.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/userdict.txt) , [stopwords.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/stopwords.txt) -- config paths are stored in [model_Config.yaml](https://github.com/etnetapp-dev/nlp_backend/tree/master/Config/yamls/model_Config.yaml))   and [jieba handler script](https://github.com/etnetapp-dev/nlp_backend/tree/master/functions/cseg.py))
 > - Requests method: post
 > - Data sent: text sentence (datatype: string)
@@ -95,7 +95,7 @@ Note: mainly input “direct run command” in between start) and exit $?
 
 
 
-- Name Entity Recognition (NER) 
+## Name Entity Recognition (NER) 
 > - Pre-requisite dependencies:  ([model](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/ner/) and [model handler script](https://github.com/etnetapp-dev/nlp_backend/tree/master/functions/ner.py)), installation of open library: [huggingface Transformer](https://huggingface.co/docs/transformers/index)
 > - Request method: post
 > - Data in request: str
@@ -104,12 +104,14 @@ Note: mainly input “direct run command” in between start) and exit $?
 ![](pic/NER_example.JPG)   
 
 
-- word2vec 
+## word2vec 
 Pre-requisite files: boc_app.bin (size ~170M too large to upload to github) , [stopwords.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/stopwords.txt), 
 installation of open-library : [magnitude-light](https://github.com/davebulaval/magnitude-light)
 
 ### convert word to vector example 
+
 - API: http://<host>:<post>/nlp_backend//w2v/tovec
+ 
 ![](pic/word2vec_convert_example.JPG)  
  
  ### word vs words similarity analysis example 
@@ -122,7 +124,7 @@ installation of open-library : [magnitude-light](https://github.com/davebulaval/
 ![](pic/check_dupe_example.JPG)  
     
 
-- fuzz logic of words
+## fuzz logic of words
 Pre-requisite files: installation of open library: [rupidfuzz](https://github.com/maxbachmann/RapidFuzz) ,
  
  ### use fuzz logic to check similarity between words and word list example 
