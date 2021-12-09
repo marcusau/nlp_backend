@@ -83,7 +83,7 @@ Note: mainly input “direct run command” in between start) and exit $?
 
 
 - jieba word segmentation
-> - Pre-requisite files: [userdict.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/userdict.txt) , [stopwords.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/stopwords.txt) -- config paths are stored in [model_Config.yaml](https://github.com/etnetapp-dev/nlp_backend/tree/master/Config/yamls/model_Config.yaml))
+> - Pre-requisite files: [userdict.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/userdict.txt) , [stopwords.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/stopwords.txt) -- config paths are stored in [model_Config.yaml](https://github.com/etnetapp-dev/nlp_backend/tree/master/Config/yamls/model_Config.yaml))   and [jieba handler script](https://github.com/etnetapp-dev/nlp_backend/tree/master/functions/cseg.py))
 > - Requests method: post
 > - Data sent: text sentence (datatype: string)
 > - Response: word segments (datatype: list)
@@ -103,29 +103,38 @@ Note: mainly input “direct run command” in between start) and exit $?
 ### Name Entity Recognition example 
 ![](pic/NER_example.JPG)   
 
-- keywords scanning
-> - Pre-requisite: completion of loading of NER model and Jieba text files
-> - Requests method:post
-> - Data sent: text sentence (datatype: string)
-> - Response: word segments (datatype: list)
-
 
 - word2vec 
-Pre-requisite files: boc_app.bin (size ~170M too large to upload to github) , [ner_results.txt](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/ner_results.txt) , [stopword.txt](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/stopwords.txt)  
+Pre-requisite files: boc_app.bin (size ~170M too large to upload to github) , [stopwords.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/stopwords.txt), 
+installation of open-library : [magnitude-light](https://github.com/davebulaval/magnitude-light)
 
-- word2vec API url: http://<host>\<port>/vectorizer
-> - function: convert articles from string format into array format
-> - Request method: post
-> - data in request: article text
-> - response: array
+### convert word to vector example 
+![](pic/word2vec_convert_example.JPG)  
+ 
+ ### word vs words similarity analysis example 
+![](pic/word2words_sim_example.JPG)  
+ 
+ ### Name Entity Recognition example 
+![](pic/NER_example.JPG)  
+ 
+ ### use word2vec model to find out top N words with semantic similarity meaning example 
+![](pic/topn_example.JPG)  
+ 
+ ### use word2vec model to deduplicate words with similarity meaning example 
+![](pic/check_dupe_example.JPG)  
+    
 
-- word2vec API url:  http://<host>\<port>/vecsim
-> - function: compare document similarity between theme vs article or article vs article
-> - Request method: post
-> - data in request: two sets of arrays
-> - response: floats
-    
-    
+- fuzz logic of words
+Pre-requisite files: installation of open library: [rupidfuzz](https://github.com/maxbachmann/RapidFuzz) ,
+ 
+ ### use fuzz logic to check similarity between words and word list example 
+![](pic/fuzz_word2words_sim_example.JPG)  
+
+### use fuzz logic to deduplicate words in word list example 
+![](pic/fuzz_dedupe_example.JPG)  
+ 
+ ### use fuzz logic to check any word with very close meaning  example 
+![](pic/fuzz_check_dedupe_example.JPG)  
 
  
 
