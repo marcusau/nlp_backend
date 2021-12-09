@@ -109,6 +109,7 @@ Pre-requisite files: boc_app.bin (size ~170M too large to upload to github) , [s
 installation of open-library : [magnitude-light](https://github.com/davebulaval/magnitude-light)
 
 ### convert word to vector example 
+- API: http://<host>:<post>/nlp_backend//w2v/tovec
 ![](pic/word2vec_convert_example.JPG)  
  
  ### word vs words similarity analysis example 
