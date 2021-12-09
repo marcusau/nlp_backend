@@ -87,15 +87,18 @@ Note: mainly input “direct run command” in between start) and exit $?
 > - Requests method: post
 > - Data sent: text sentence (datatype: string)
 > - Response: word segments (datatype: list)
-### work segmentation example 1(jieba.cut)
+> 
+### work segmentation example (jieba.cut)
+
+- API: http://<host>:<post>/nlp_backend/seg/cut
+ 
 ![](pic/jieba_cut_example.JPG)   
-
-### work segmentation example 2 (jieba.cut_for_search)
-![](pic/cut_for_search_example.JPG)   
-
 
 
 ## Name Entity Recognition (NER) 
+
+- API: http://<host>:<post>/nlp_backend/ner/main
+ 
 > - Pre-requisite dependencies:  ([model](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/ner/) and [model handler script](https://github.com/etnetapp-dev/nlp_backend/tree/master/functions/ner.py)), installation of open library: [huggingface Transformer](https://huggingface.co/docs/transformers/index)
 > - Request method: post
 > - Data in request: str
@@ -115,12 +118,21 @@ installation of open-library : [magnitude-light](https://github.com/davebulaval/
 ![](pic/word2vec_convert_example.JPG)  
  
  ### word vs words similarity analysis example 
+ 
+- API: http://<host>:<post>/nlp_backend/w2v/wordssim
+ 
 ![](pic/word2words_sim_example.JPG)  
  
  ### use word2vec model to find out top N words with semantic similarity meaning example 
+ 
+- API: http://<host>:<post>/nlp_backend/w2v/topn
+ 
 ![](pic/topn_example.JPG)  
  
  ### use word2vec model to deduplicate words with similarity meaning example 
+ 
+- API: http://<host>:<post>/nlp_backend/w2v/dedupe
+ 
 ![](pic/check_dupe_example.JPG)  
     
 
@@ -128,12 +140,21 @@ installation of open-library : [magnitude-light](https://github.com/davebulaval/
 Pre-requisite files: installation of open library: [rupidfuzz](https://github.com/maxbachmann/RapidFuzz) ,
  
  ### use fuzz logic to check similarity between words and word list example 
+ 
+- API: http://<host>:<post>/nlp_backend/fuzz/wordssim
+ 
 ![](pic/fuzz_word2words_sim_example.JPG)  
 
 ### use fuzz logic to deduplicate words in word list example 
+ 
+- API: http://<host>:<post>/nlp_backend/fuzz/dedupe
+ 
 ![](pic/fuzz_dedupe_example.JPG)  
  
  ### use fuzz logic to check any word with very close meaning  example 
+ 
+- API: http://<host>:<post>/nlp_backend/fuzz/checkdupe
+ 
 ![](pic/fuzz_check_dedupe_example.JPG)  
 
  
