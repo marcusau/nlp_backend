@@ -96,11 +96,12 @@ Note: mainly input “direct run command” in between start) and exit $?
 
 
 - Name Entity Recognition (NER) 
-> - Pre-requisite dependencies:  ([model](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/bert_model) and [model handler script](https://github.com/etnetapp-dev/app2app_nlp/blob/master/backend/ner_model_handler.py))
+> - Pre-requisite dependencies:  ([model](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/ner/) and [model handler script](https://github.com/etnetapp-dev/nlp_backend/tree/master/functions/ner.py))
 > - Request method: post
 > - Data in request: str
 > - response: json
-
+### Name Entity Recognition example 
+![](pic/NER_example.JPG)   
 
 - keywords scanning
 > - Pre-requisite: completion of loading of NER model and Jieba text files
