@@ -24,7 +24,8 @@ The whole module pipeline is built at sequential order. To build the module in s
 # Data Retrieval 
 
 **Pre-requisite procedures**: connection and configuration of SQLDB
-     please refer to the documentation in https://github.com/etnetapp-dev/nlp_middle_tier
+
+      please refer to the documentation in https://github.com/etnetapp-dev/nlp_middle_tier
 
 
 # **Natural Language Processing (NLP) application **
