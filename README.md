@@ -24,7 +24,8 @@ The whole module pipeline is built at sequential order. To build the module in s
 # Data Retrieval 
 
 **Pre-requisite procedures**: connection and configuration of SQLDB
-> please refer to the documentation in 
+
+      please refer to the documentation in https://github.com/etnetapp-dev/nlp_middle_tier
 
 
 # **Natural Language Processing (NLP) application **
@@ -80,56 +81,93 @@ Note: mainly input “direct run command” in between start) and exit $?
 ### The background service is run on background in server, called function by API url shown below.
 
 
+# Four key functions of nlp_backend
 
-
-- jieba word segmentation
-> - Pre-requisite files: [userdict.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/userdict.txt) , [stopwords.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/stopwords.txt) -- config paths are stored in [model_Config.yaml](https://github.com/etnetapp-dev/nlp_backend/tree/master/Config/yamls/model_Config.yaml))
+##  jieba word segmentation
+> - Pre-requisite files: [userdict.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/userdict.txt) , [stopwords.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/stopwords.txt) -- config paths are stored in [model_Config.yaml](https://github.com/etnetapp-dev/nlp_backend/tree/master/Config/yamls/model_Config.yaml))   and [jieba handler script](https://github.com/etnetapp-dev/nlp_backend/tree/master/functions/cseg.py))
 > - Requests method: post
 > - Data sent: text sentence (datatype: string)
 > - Response: word segments (datatype: list)
-### work segmentation example 1(jieba.cut)
+> 
+### work segmentation example (jieba.cut)
+
+- API: http://10.200.23.42:{post}/nlp_backend/seg/cut
+ 
 ![](pic/jieba_cut_example.JPG)   
 
-### work segmentation example 2 (jieba.cut_for_search)
-![](pic/cut_for_search_example.JPG)   
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## Name Entity Recognition (NER) 
 
-
-- Name Entity Recognition (NER) 
-> - Pre-requisite dependencies:  ([model](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/ner/) and [model handler script](https://github.com/etnetapp-dev/nlp_backend/tree/master/functions/ner.py))
+- API: http://10.200.23.42:{post}/nlp_backend/ner/main
+ 
+> - Pre-requisite dependencies:  ([model](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/ner/) and [model handler script](https://github.com/etnetapp-dev/nlp_backend/tree/master/functions/ner.py)), installation of open library: [huggingface Transformer](https://huggingface.co/docs/transformers/index)
 > - Request method: post
 > - Data in request: str
 > - response: json
 ### Name Entity Recognition example 
 ![](pic/NER_example.JPG)   
 
-- keywords scanning
-> - Pre-requisite: completion of loading of NER model and Jieba text files
-> - Requests method:post
-> - Data sent: text sentence (datatype: string)
-> - Response: word segments (datatype: list)
+### Type of Name Entity example 
+![](pic/ner_desc.JPG)   
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-- word2vec 
-Pre-requisite files: boc_app.bin (size ~170M too large to upload to github) , [ner_results.txt](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/ner_results.txt) , [stopword.txt](https://github.com/etnetapp-dev/app2app_nlp/tree/master/resources/stopwords.txt)  
+## word2vec 
+Pre-requisite files: boc_app.bin (size ~170M too large to upload to github) , [stopwords.txt](https://github.com/etnetapp-dev/nlp_backend/tree/master/models/seg/stopwords.txt), 
+installation of open-library : [magnitude-light](https://github.com/davebulaval/magnitude-light)
 
-- word2vec API url: http://<host>\<port>/vectorizer
-> - function: convert articles from string format into array format
-> - Request method: post
-> - data in request: article text
-> - response: array
+### convert word to vector example 
 
-- word2vec API url:  http://<host>\<port>/vecsim
-> - function: compare document similarity between theme vs article or article vs article
-> - Request method: post
-> - data in request: two sets of arrays
-> - response: floats
+- API: http://10.200.23.42:{post}/nlp_backend//w2v/tovec
+ 
+![](pic/word2vec_convert_example.JPG)  
+ 
+ ### word vs words similarity analysis example 
+ 
+- API: http://10.200.23.42:{post}/nlp_backend/w2v/wordssim
+ 
+![](pic/word2words_sim_example.JPG)  
+ 
+ ### use word2vec model to find out top N words with semantic similarity meaning example 
+ 
+- API: http://10.200.23.42:{post}/nlp_backend/w2v/topn
+ 
+![](pic/topn_example.JPG)  
+ 
+ ### use word2vec model to deduplicate words with similarity meaning example 
+ 
+- API: http://10.200.23.42:{post}/nlp_backend/w2v/dedupe
+ 
+![](pic/check_dupe_example.JPG)  
     
-    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## fuzz logic of words
+Pre-requisite files: installation of open library: [rupidfuzz](https://github.com/maxbachmann/RapidFuzz) ,
+ 
+ ### use fuzz logic to check similarity between words and word list example 
+ 
+- API: http://10.200.23.42:{post}/nlp_backend/fuzz/wordssim
+ 
+![](pic/fuzz_word2words_sim_example.JPG)  
+
+### use fuzz logic to deduplicate words in word list example 
+ 
+- API: http://10.200.23.42:{post}/nlp_backend/fuzz/dedupe
+ 
+![](pic/fuzz_dedupe_example.JPG)  
+ 
+ ### use fuzz logic to check any word with very close meaning  example 
+ 
+- API: http://10.200.23.42:{post}/nlp_backend/fuzz/checkdupe
+ 
+![](pic/fuzz_check_dedupe_example.JPG)  
 
  
 
-   
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
 
 ##
 # ** Design and structure of SQL Database **
